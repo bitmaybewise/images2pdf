@@ -27,7 +27,7 @@ object PDFGenerator {
     val pdf = new File(pdfName)
     if (!pdf.exists()) {
       val document = new PDDocument()
-      val images = dir.listFiles().filter(_.getName.endsWith(".jpg")).sorted
+      val images = filterJpgs(dir).sorted
       images.foreach { jpg =>
         val blankPage = new PDPage()
         val stream = new PDPageContentStream(document, blankPage)
